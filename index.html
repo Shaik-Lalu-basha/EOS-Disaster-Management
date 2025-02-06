@@ -1,0 +1,1424 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+
+     <title>EOS for Life Life Alert</title>
+
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+     <meta name="description" content="">
+     <meta name="keywords" content="">
+     <meta name="author" content="">
+     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+
+     
+     <link rel="stylesheet" href="css/bootstrap.min.css">
+     <link rel="stylesheet" href="css/font-awesome.min.css">
+     <link rel="stylesheet" href="css/animate.css">
+     <link rel="stylesheet" href="css/owl.carousel.css">
+     <link rel="stylesheet" href="css/owl.theme.default.min.css">
+     <link rel="stylesheet" href="css/magnific-popup.css">
+
+     <!-- MAIN CSS -->
+     <link rel="stylesheet" href="css/templatemo-style.css">
+     <!-- MAP LOAD SCRIPT -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmVPctb07LMUbtImoe4EijQUkibkNzBsA&callback=initMap&libraries=places">
+</script>
+     
+<!-- MAP MIAN SCRIPT -->
+<script>
+
+     // THIS IS THE ONE FOR FETCHING LONGITUDE AND LATITUDE 
+     
+          navigator.geolocation.getCurrentPosition(function(position) {
+                    var lon=position.coords.longitude;
+                    var lat=position.coords.latitude;
+                    // alert(lon);
+                    document.getElementById("lon").value = lon;
+                    document.getElementById("lat").value = lat;  
+                    });
+          
+     
+     
+     
+     // THIS IS THE TO DISPLAY LOCATIONS.
+     (function(exports) {
+               // "use strict";
+                    function initMap() {
+          
+               
+               
+               // else {
+               //     alert("Re-load and Allow Location Access.");
+               // }
+          
+               // make the var dynamic n we are done
+                    
+                    //  alert(document.getElementById("lat").value);
+                    var lat=Number(document.getElementById("lat").value);
+                    var lon=Number(document.getElementById("lon").value);
+                    
+                    // var lon= 77.21;
+                    // var lat= 28.66;
+                    
+     
+     
+     
+     
+                    var sydney = new google.maps.LatLng(lat, lon);
+                    exports.infowindow = new google.maps.InfoWindow();
+                    exports.map = new google.maps.Map(document.getElementById("map"), {
+                    center: sydney,
+                    zoom: 15
+                    });
+                    var request = {
+                    location: sydney,
+                    radius: '2000',
+               type: ['hospital']
+                    };
+                    exports.service = new google.maps.places.PlacesService(exports.map);
+                    exports.service.nearbySearch(request, function(
+                    results,
+                    status
+                    ) {
+                    if (status === google.maps.places.PlacesServiceStatus.OK) {
+                    for (var i = 0; i < results.length; i++) {
+                         createMarker(results[i]);
+                    }
+          
+                    exports.map.setCenter(results[0].geometry.location);
+                    }
+                    });
+             }
+     
+     function createMarker(place) {
+               var marker = new google.maps.Marker({
+               map: exports.map,
+               position: place.geometry.location
+               });
+               google.maps.event.addListener(marker, "click", function() {
+               exports.infowindow.setContent(place.name);
+               exports.infowindow.open(exports.map, this);
+               });
+               }
+     
+             exports.createMarker = createMarker;
+             exports.initMap = initMap;
+           })((this.window = this.window || {}));
+     
+     
+     
+     
+</script>
+
+
+</head>
+<body >
+
+
+    
+    
+     <!-- PRE LOADER -->
+     <section class="preloader">
+          <div class="spinner">
+
+               <span class="spinner-rotate"></span>
+               
+          </div>
+     </section>
+
+
+     <!-- MENU -->
+     <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
+          <div class="container">
+
+               <div class="navbar-header">
+                    <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                         <span class="icon icon-bar"></span>
+                         <span class="icon icon-bar"></span>
+                         <span class="icon icon-bar"></span>
+                    </button>
+
+                    <!-- lOGO TEXT HERE -->
+                    <a href="base.html" class="navbar-brand">EOS for Life Life Alert</a>
+               </div>
+
+               <!-- MENU LINKS -->
+               <div class="collapse navbar-collapse" style="width: 110%;">
+                    <ul class="nav navbar-nav navbar-nav-first">
+                         <li><a href="#home" class="smoothScroll">Home</a></li>
+                         <li><a href="#about" class="smoothScroll">About</a></li>
+                         <li><a href="#news" class="smoothScroll">Alert</a></li>
+                         <li><a href="#contact" class="smoothScroll">Contact</a></li>
+                         <li><a href="#" class="red smoothScroll " style="color: rgb(211, 44, 44);"  data-toggle="modal" data-target="#donate" >Donate</a></li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                         <li><a href="tel:108">Emergency DIAL:  <i class="fa fa-phone"></i> 1874</a></li>
+                        
+                          <a href="#" class="section-btn" data-toggle="modal" data-target="#exampleModal1">Login </a>
+                        
+                          <a href="#" class="section-btn" data-toggle="modal" data-target="#exampleModal"> Get Notified!</a>
+                    </ul>
+               </div>
+
+          </div>
+     </section>
+
+
+<!--MODAL FOR DONATE -->
+<div class="modal fade" id="donate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel" style="color: black ; font-weight: 500">Donate</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">        	
+          <p style="font-weight: 600; color: black;">    Donate at the UPI : <span style="color: red ;">eosforlifelinealert@escort </span> </p>
+        </div>
+       
+      </div>
+    </div>
+  </div>
+     
+      
+<!--MODAL FOR LOGIN-->
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     <div class="modal-dialog" role="document">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <h5 class="modal-title" id="exampleModalLabel" style="color: black; font-weight: 500">Admin Login</h5>
+                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                 </button>
+             </div>
+             <div class="modal-body">        	
+                 <form onsubmit="return handleAdminLogin(event)">
+                     <div class="form-row">
+                         <div class="col-md-4">
+                             <label for="adminName">Admin Name</label>
+                             <input type="text" class="form-control is-valid" id="adminName" placeholder="User Name" required name="user_name">
+                         </div>
+                         <div class="col-md-4">
+                             <label for="adminPassword">Password</label>
+                             <input type="password" class="form-control is-valid" id="adminPassword" placeholder="Password" required name="password">
+                         </div>
+                     </div><br>
+                     <button class="section-btn" type="submit" name="submit" style="margin-top: 2px; margin-left: 50px;">Login</button>
+                 </form> 
+             </div>
+         </div>
+     </div>
+ </div>
+ 
+ <script>
+     function handleAdminLogin(event) {
+         event.preventDefault(); // Prevent form submission
+ 
+         var adminName = document.getElementById("adminName").value;
+         var adminPassword = document.getElementById("adminPassword").value;
+ 
+         if (adminName !== "" && adminPassword !== "") {
+             alert("Login Successful!");
+ 
+             // Check if geolocation is available
+             if (navigator.geolocation) {
+                 navigator.geolocation.getCurrentPosition(showAdminLocation, showError);
+             } else {
+                 alert("Geolocation is not supported by this browser.");
+             }
+         } else {
+             alert("Please fill in all fields.");
+         }
+     }
+ 
+     function showAdminLocation(position) {
+         var latitude = position.coords.latitude;
+         var longitude = position.coords.longitude;
+ 
+         alert("Your GPS Location:\nLatitude: " + latitude + "\nLongitude: " + longitude);
+ 
+         // Display location on the page
+         let locationDiv = document.createElement("div");
+         locationDiv.innerHTML = `<p>Your GPS Location:<br> Latitude: ${latitude}<br> Longitude: ${longitude}</p>`;
+         document.body.appendChild(locationDiv);
+ 
+         // Open Google Maps with the current location
+         var googleMapsUrl = "https://maps.app.goo.gl/5TEsBBqaTVcktK2H6" + latitude + "," + longitude;
+         window.open(googleMapsUrl, "_blank");
+     }
+ 
+     function showError(error) {
+         switch (error.code) {
+             case error.PERMISSION_DENIED:
+                 alert("User denied the request for Geolocation. Please allow location access.");
+                 break;
+             case error.POSITION_UNAVAILABLE:
+                 alert("Location information is unavailable.");
+                 break;
+             case error.TIMEOUT:
+                 alert("The request to get user location timed out.");
+                 break;
+             case error.UNKNOWN_ERROR:
+                 alert("An unknown error occurred.");
+                 break;
+         }
+     }
+ </script>
+ 
+   
+  <!--MODAL FOR Signup-->
+    <div class="modal fade"  id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  
+   <div class="modal-dialog" role="document">
+    <div class="modal-content"  >
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="color: black ; font-weight: 500">SignUp</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="height: 200px">        	
+ <form  style="padding-left: 2%;">
+  <div class="form-row">
+    <div class="col-md-5 mb-3">
+      <label for="validationServer01">Name</label>
+      <input type="text" class="form-control is-valid" id="validationServer01" placeholder="Name"  required name="user_name">
+      
+    </div>
+    <div class="form-row">
+     <div class="col-md-6 mb-3">
+       <label for="validationServer03">Contact:</label>
+       <input type="text" class="form-control is-invalid" id="validationServer03" placeholder="Number" name="contact" required>
+       
+     </div>
+    <div class="col-md-5 mb-6" style="margin-top:2%;">
+      <label for="validationServerUsername">Email</label>
+      <div class="input-group">
+        <input type="email" class="form-control is-invalid" id="validationServerUsername" placeholder="email" aria-describedby="inputGroupPrepend3" required name="email" >
+        
+      </div>
+
+    </div>
+  <button class="section-btn col-md-4 mb-3" type="submit" name="submit" style=" margin-left: 50px;" >Sign up</button>
+
+  </div>
+  
+
+   
+  </div>
+
+
+  
+</form>
+             
+      </div>
+     
+    </div>
+  </div>
+</div>
+     <!-- HOME -->
+     <section id="home" class="slider" data-stellar-background-ratio="0.5">
+          <div class="row">
+
+                    <div class="owl-carousel owl-theme">
+                         <div class="item item-first">
+                              <div class="caption">
+                                   <div class="container">
+                                        <div class="col-md-8 col-sm-8">
+                                             <h3>Disaster management and Emergency precautions!</h3>
+                                            
+                                             <h1>Stay updated! Stay safe! </h1>
+                                            
+                                        </div>
+                                            <div class="col-md-2 col-sm-2">
+                                             
+                                             <a href="#" target="_blank"  data-toggle="modal" data-target="#aid" class="section-btn btn btn-default smoothScroll">First - Aid Steps . </a><br>
+                                             <a href="#mapp" class="section-btn btn btn-default smoothScroll">Healthcare Centers </a><br>
+                                             <a href="#prec" class="section-btn btn btn-default smoothScroll">Precautionary Steps</a>
+                                             
+                                             <!--   notify button start-->
+											 <!--   notify button ends-->
+
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>    
+                    </div>
+          </div>
+     </section>
+
+<!--MODAL FOR First Aid-->
+<div class="modal fade" id="aid" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     <div class="modal-dialog aid" role="document" >
+      <div class="modal-content ">
+        <div class="modal-header aid-head">
+          <h5 class="modal-title" id="exampleModalLabel" style="color: rgb(255, 255, 255) ; font-weight: 500">First-Aid Steps</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" style="color: rgb(255, 255, 255);">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body aid-body">        	
+          <div class="col-md-3 m-btn">                              
+               <a href="#" data-toggle="modal" data-target="#bone" class=" big  btn btn-default  bold ">Broken Bone</a>
+          </div>
+          <div class="col-md-3 m-btn">  
+               <a href="#" data-toggle="modal" data-target="#bleed" class="btn btn-default  bold big">Bleeding Wounds</a><br>
+          </div>
+          
+               <div class="col-md-3 m-btn">  
+               <a href="#"  data-toggle="modal" data-target="#int-bleed" class=" btn btn-default bold big ">Internal Bleeding</a><br>
+          </div>
+         
+               <div class="col-md-3 m-btn">  
+               <a href="#" data-toggle="modal" data-target="#burn"  class=" btn btn-default  bold big">Burn Treatment</a>
+          </div>
+               
+               <!--   notify button start-->
+                          <!--   notify button ends-->
+
+          
+        </div>
+       
+      </div>
+    </div>
+  </div>
+
+
+<!-- Broken Bone Modal -->
+<div class="modal fade" id="bone" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+     <div class="modal-dialog" role="document" >
+         <div class="modal-content" >
+             <div class="modal-header">
+                 <h3 class="modal-title" id="exampleModalLabel" style="color: black ; font-weight: 500;" >Broken Bone</h3>
+                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+                 </button>
+             </div>
+             <div class="modal-body">   
+                 <div class="recog">
+                     <p style="font-weight: 500; color: #000;" >
+                     <img src="images/bone.png" alt="" width="100%">
+                         <p class="bold">  Treatment of broken bone wounds </p>  <br>
+                         - Treatment of a broken bone wound (fixation) is known as splint bandaging. Fixation is done by applying two splints comprising of wood lined with thin cloth/sponge. The splints, each two centimeter in length are meant to flank the fracture location, which are then bound with a rope, and tightened to support the broken body part and prevent it from suspending. 
+                         <br> <br>  - Treating a broken neck is by propping up the neck to prevent any movement, whether left and right, to and fro, as well as turning around. 
+                     <br>   <br>   - A broken back does not need first aid, but needs special aid from competent persons. What should be exercised is to make victim remain in a lying down position, and to make use of a flat and hard palanquin when transferring the victim to a different location. 
+                     <br>    <br> -  When treating a victim with a broken collarbone, no splints are needed, only a shoulder binder to retain its position and prevent the victim from stooping. 
+                     <br>  <br>  -   In the case of an open broken bone, first step is to cover the wound, and thereafter conduct a fixation against the broken bone. 
+     
+     
+                         <p class="bold">Rcognize Wound</p>
+                     'A broken bone wound refers to a wound which occurs on a bone, in the form of cracking, breaking or sticking out of the body. 
+                     Broken bones are injuries most common during earthquakes. <br>
+                     The cause of a broken bone is for instance being struck by building debris, trampled on, getting squeezed. <br><br>
+                     <p class="bold">
+                     Types of broken bone wounds <br></p>
+     
+                     • Fractured bone: a bone experiences trauma/impact it may cause the bone to crack, but not break apart. <br>
+                     • Closed broken bone: a bone breaks, but is still inside the body. <br>
+                     • Open broken bone: a bone breaks and sticks out through the skin. <br><br>
+                     <p class="bold">
+                     Symptoms of broken bone wounds <br></p>
+                     
+     
+                     • Black and blue <br>
+                     • Swollen <br>
+                     • Very painful when touched or moved <br>
+                     • Change in form <br>
+                     • Broken neck bone can be noticed when there are wounds on both head and neck <br>
+                     • Broken backbone can be noticed when there is a difference in the length of the legs <br>
+                     • Broken rib-bone is followed by breathing difficulties <br>
+                     <br>
+                     <p class="bold">
+                     Principles of first aid against broken bone wounds 
+                     The first aid principle to address a broken bone wound is through the fixation to rest/minimize activity of the two joints that flank the broken bone. This is necessary to prevent friction of the broken bone. Friction of a broken bone can aggravate the wound. 
+                     </p>
+                     </p>
+                 </div>     	                         
+                 </div>  
+             </div>
+         </div>
+     </div>
+     
+     
+     <!-- Bleeding Modal -->
+     <div class="modal fade" id="bleed" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+     <div class="modal-dialog" role="document" >
+         <div class="modal-content" >
+             <div class="modal-header">
+                 <h3 class="modal-title" id="exampleModalLabel" style="color: black ; font-weight: 500">Bleeding</h3>
+                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+                 </button>
+             </div>
+             <div class="modal-body">   
+                 <div class="recog">
+                     <p style="font-weight: 500; color: #000;" >
+                     <img src="images/curs.png" alt="" width="100%">
+                         <p class="bold">  Bleeding wounds</p>  <br>
+                         During certain disasters, a bleeding wound may occur, e.g., piercing by flying building material during a cyclone, being struck down by building debris, scratching by a sharp object. <br> <br>  - Treating a broken neck is by propping up the neck to prevent any movement, whether left and right, to and fro, as well as turning around. 
+                     <br>   <br>   - Keep in mind that a bleeding wound can be quite dangerous and should straightaway be treated because of several factors:  <br>
+                     • Whenever there is a loss of blood exceeding 20% of the total blood in a human body, this may cause unconsciousness and when no immediate help is given could result in death. <br>
+                     • Blood outflow from a wound. A wound represents a window for viruses or bacteria to enter the body, therefore the wound should be covered immediately to prevent an infection.  <br>
+                     
+     <br>
+                     Although the body has the ability to stop bleeding, it is necessary to apply first aid against a bleeding wound. 
+                  <br> <br><p class="bold">  The main way to do this is through: </p>
+      <br>                • exerting pressure on the wound 
+          <br>           • placing a bandage on the wound 
+              <br>       • exerting pressure and placing a bandage (tourniquet) on the wound • exerting pressure on internal blood center points, for instance by the neck side, underneath the upper arm 
+                  <br>   • and even when there is no more bleeding, the wound should still be covered to prevent bacteria/germs from entering through the open skin.                
+                 </div>     	                         
+                 </div>  
+             </div>
+         </div>
+     </div>
+     
+     
+     
+         <!-- Internal bleed Modal -->
+     <div class="modal fade" id="int-bleed" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+         <div class="modal-dialog" role="document" >
+             <div class="modal-content" >
+                 <div class="modal-header">
+                     <h3 class="modal-title" id="exampleModalLabel" style="color: black ; font-weight: 500"> Internal Bleeding</h3>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                     </button>
+                 </div>
+                 <div class="modal-body">   
+                     <div class="recog">
+                         <p style="font-weight: 500; color: #000;" >
+                         <img src="images/intbleed.png" alt="" width="100%">
+                             <p class="bold">  Internal Bleeding wounds</p>  <br>
+                             Internal bleeding occurs when there is an internal body wound, although no blood has left the body. 
+                           <br>  Body parts that often experience internal bleeding are the thoracic cavity, the stomach cavity and the head cavity. 
+                          <br>   Applying aid is through calming the victim, and by taking him/her a clinic or hospital as quickly as possible, because the treatment is limited to those with special competence. 
+                          <br> <br> <p class="bold">   Internal bleeding symptoms: </p> <br>
+                             • Stomach cavity bleeding is indicated by enlarged, hard and stiff stomach 
+                      <br>       • Thoracic cavity bleeding is indicated by short-windedness. 
+                       <br>      • Head cavity bleeding by decreasing consciousness and may result in paralysis. 
+     <br>
+                           <br>  Although the body has the ability to stop bleeding, it is necessary to apply first aid against a bleeding wound. 
+                        <br><br> <b class="bold">     The main way to do this is through: </br>
+                         <br>    • exerting pressure on the wound 
+                         <br>    • placing a bandage on the wound 
+                        <br>     • exerting pressure and placing a bandage (tourniquet) on the wound • exerting pressure on internal blood center points, for instance by the neck side, underneath the upper arm 
+                        <br>     • and even when there is no more bleeding, the wound should still be covered to prevent bacteria/germs from entering through the open skin. 
+                         </div>     	                         
+                     </div>  
+                 </div>
+             </div>
+         </div>
+     
+     
+             <!-- Burn Modal -->
+     <div class="modal fade" id="burn" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+         <div class="modal-dialog" role="document" >
+             <div class="modal-content" >
+                 <div class="modal-header">
+                     <h3 class="modal-title" id="exampleModalLabel" style="color: black ; font-weight: 500">Burn</h3>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                     </button>
+                 </div>
+                 <div class="modal-body">   
+                     <div class="recog">
+                         <p style="font-weight: 500; color: #000;" > </p>>
+                         <img src="images/burns.png" alt="" width="100%">
+                             <p class="bold">  Burn</p>  <br>
+                             
+                            <br> A burn may occur because of fire from an electrical short-circuit, a stove or machinery. 
+                           <br><br> <p class="bold">  Burn symptoms: </p> <br> <br>
+                             The presence of a burn can be observed from the combination of symptoms as follows: 
+                          <br>   • Red colored skin 
+                           <br>  • Blistered skin 
+                        <br>     • Peeling off skin 
+                            <br> • Painful when touched 
+                           <br>  • Feeling very hot 
+                           <br>  • Flesh get burned until the bones can be seen 
+                            <br> • Stinging smell 
+                           <br>  • Feeling very thirsty 
+                            <br> • Not bleeding  <br>
+     
+                           <br> Principles of first aid against burns <br> <br>
+     <br>  • Stop the deepening process of the burn. Most effective: pouring or soaking the wound with cold and clean water. 
+     <br> • When a burn causes skin to peel off, immediately cover the wound with a clean cloth, avoid smearing with anything else to prevent risk of infection that may complicate further treatment. Cover the wound using a sterile cloth, for instance an already washed and ironed clean handkerchief or clean plastic. 
+     <br> • After the wound is covered, a bandage may be applied. Bandaging a burn is different than bandaging a bleeding wound. During bandaging a burn, it is important to be sure that the wound is covered rather than the tightness of the bandage. 
+     <br> • After the wound is covered, try to get further treatment. 
+     
+     
+     </div>     	                         
+                     </div>  
+                 </div>
+             </div>
+         </div>
+
+
+      <!-- News -->
+  
+      <section id="contact-news" data-stellar-background-ratio="0.1" style="padding: 40px;">
+          <div class="container wow fadeInUp" data-wow-delay="0.1s" style="padding: 0px;">
+              <div class="col-md-6">
+                  <h2 id="news">Ministry News</h2>
+                  <div class="holder">
+                      <ul id="ticker01">
+                          <li>
+                              <div class="col-md-4">
+                                  <img src="images/wildfire.jpg" alt="loading..." class="newsi">
+                              </div>
+                              <div class="col-md-8">
+                                  <span>31/07/2020</span><a href="#" data-toggle="modal" data-target="#news1">
+                                      <br> Wildfires Devastate California, Thousands Evacuated.
+                                  </a>
+                              </div><br>
+                          </li>
+                          <li>
+                              <div class="col-md-4">
+                                  <img src="images/earthquakeee.jpg" alt="loading..." class="newsi">
+                              </div>
+                              <div class="col-md-8">
+                                  <span>10/10/2022</span><a href="#" data-toggle="modal" data-target="#news1">
+                                      <br> 7.5 Magnitude Earthquake Hits Japan, Massive Damage Reported.
+                                  </a>
+                              </div><br>
+                          </li>
+                          <li>
+                              <div class="col-md-4">
+                                  <img src="images/wildfires.jpg" alt="loading..." class="newsi">
+                              </div>
+                              <div class="col-md-8">
+                                  <span>15/11/2021</span><a href="#" data-toggle="modal" data-target="#news1">
+                                      <br> Deadly Wildfires Continue to Rage in Australia, Air Quality Reaches Dangerous Levels.
+                                  </a>
+                              </div><br>
+                          </li>
+                          <li>
+                              <div class="col-md-4">
+                                  <img src="images/flooood.jpg" alt="loading..." class="newsi">
+                              </div>
+                              <div class="col-md-8">
+                                  <span>02/08/2022</span><a href="#" data-toggle="modal" data-target="#news1">
+                                      <br> Severe Flooding in South Asia Displaces Millions.
+                                  </a>
+                              </div><br>
+                          </li>
+                          <li>
+                              <div class="col-md-4">
+                                  <img src="images/pandemic.jpg" alt="loading..." class="newsi">
+                              </div>
+                              <div class="col-md-8">
+                                  <span>05/04/2020</span><a href="#" data-toggle="modal" data-target="#news1">
+                                      <br> Global Pandemic: COVID-19 Spreads Across the World, Nations on Lockdown.
+                                  </a>
+                              </div><br>
+                          </li>
+                          <li>
+                              <div class="col-md-4">
+                                  <img src="images/riots.jpg" alt="loading..." class="newsi">
+                              </div>
+                              <div class="col-md-8">
+                                  <span>15/06/2020</span><a href="#" data-toggle="modal" data-target="#news1">
+                                      <br> Nationwide Riots Erupt in Response to Social Unrest.
+                                  </a>
+                              </div><br>
+                          </li>
+                          <li>
+                              <div class="col-md-4">
+                                  <img src="images/wildfire.jpg" alt="loading..." class="newsi">
+                              </div>
+                              <div class="col-md-8">
+                                  <span>11/08/2022</span><a href="#" data-toggle="modal" data-target="#news1">
+                                      <br> Wildfires Threaten National Parks and Wildlife in the United States.
+                                  </a>
+                              </div><br>
+                          </li>
+                          <li>
+                              <div class="col-md-4">
+                                  <img src="images/wildfire.jpg" alt="loading..." class="newsi">
+                              </div>
+                              <div class="col-md-8">
+                                  <span>25/09/2022</span><a href="#" data-toggle="modal" data-target="#news1">
+                                      <br> Record Wildfires in Brazil Push Indigenous Communities into Danger.
+                                  </a>
+                              </div><br>
+                          </li>
+                          <li>
+                              <div class="col-md-4">
+                                  <img src="images/wildfire.jpg" alt="loading..." class="newsi">
+                              </div>
+                              <div class="col-md-8">
+                                  <span>14/03/2023</span><a href="#" data-toggle="modal" data-target="#news1">
+                                      <br> Wildfire in Southern California Forces Thousands to Evacuate.
+                                  </a>
+                              </div><br>
+                          </li>
+                          <li>
+                              <div class="col-md-4">
+                                  <img src="images/wildfire.jpg" alt="loading..." class="newsi">
+                              </div>
+                              <div class="col-md-8">
+                                  <span>01/12/2023</span><a href="#" data-toggle="modal" data-target="#news1">
+                                      <br> Severe Flooding in Europe Leads to Widespread Destruction.
+                                  </a>
+                              </div><br>
+                          </li>
+                          <li>
+                              <div class="col-md-4">
+                                  <img src="images/wildfires.jpg" alt="loading..." class="newsi">
+                              </div>
+                              <div class="col-md-8">
+                                  <span>05/01/2024</span><a href="#" data-toggle="modal" data-target="#news1">
+                                      <br> Earthquake and Tsunami Hit Indonesia, Thousands of Lives Affected.
+                                  </a>
+                              </div><br>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+              <div class="col-md-1"></div>
+              <div class="col-md-6">
+                  <h2 id="news">National News</h2>
+                  <div class="holder">
+                      <ul id="ticker01">
+                          <li>
+                              <div class="col-md-4">
+                                  <img src="images/wildfire.jpg" alt="loading..." class="newsi">
+                              </div>
+                              <div class="col-md-8">
+                                  <span>31/07/2020</span><a href="#" data-toggle="modal" data-target="#news1">
+                                      <br> Wildfires Ravage California, Evacuations Ongoing.
+                                  </a>
+                              </div><br>
+                          </li>
+                          <li>
+                              <div class="col-md-4">
+                                  <img src="images/earthquakeee.jpg" alt="loading..." class="newsi">
+                              </div>
+                              <div class="col-md-8">
+                                  <span>22/09/2022</span><a href="#" data-toggle="modal" data-target="#news1">
+                                      <br> Earthquake Strikes Nepal, Hundreds Dead.
+                                  </a>
+                              </div><br>
+                          </li>
+                          <li>
+                              <div class="col-md-4">
+                                  <img src="images/wildfires.jpg" alt="loading..." class="newsi">
+                              </div>
+                              <div class="col-md-8">
+                                  <span>19/11/2021</span><a href="#" data-toggle="modal" data-target="#news1">
+                                      <br> Devastating Wildfires Sweep Through Greece, Major Losses Reported.
+                                  </a>
+                              </div><br>
+                          </li>
+                          <li>
+                              <div class="col-md-4">
+                                  <img src="images/flooood.jpg" alt="loading..." class="newsi">
+                              </div>
+                              <div class="col-md-8">
+                                  <span>23/07/2021</span><a href="#" data-toggle="modal" data-target="#news1">
+                                      <br> Flash Floods in Southeast Asia Cause Widespread Destruction.
+                                  </a>
+                              </div><br>
+                          </li>
+                          <li>
+                              <div class="col-md-4">
+                                  <img src="images/pandemic.jpg" alt="loading..." class="newsi">
+                              </div>
+                              <div class="col-md-8">
+                                  <span>15/03/2020</span><a href="#" data-toggle="modal" data-target="#news1">
+                                      <br> COVID-19 Pandemic Declared a Global Emergency by WHO.
+                                  </a>
+                              </div><br>
+                          </li>
+                          <li>
+                              <div class="col-md-4">
+                                  <img src="images/riots.jpg" alt="loading..." class="newsi">
+                              </div>
+                              <div class="col-md-8">
+                                  <span>04/11/2021</span><a href="#" data-toggle="modal" data-target="#news1">
+                                      <br> Political Unrest Leads to Violent Riots Across Major Cities.
+                                  </a>
+                              </div><br>
+                          </li>
+                          <li>
+                              <div class="col-md-4">
+                                  <img src="images/wildfire.jpg" alt="loading..." class="newsi">
+                              </div>
+                              <div class="col-md-8">
+                                  <span>10/08/2022</span><a href="#" data-toggle="modal" data-target="#news1">
+                                      <br> Wildfires in North America Impact Air Quality and Agriculture.
+                                  </a>
+                              </div><br>
+                          </li>
+                          <li>
+                              <div class="col-md-4">
+                                  <img src="images/wildfire.jpg" alt="loading..." class="newsi">
+                              </div>
+                              <div class="col-md-8">
+                                  <span>29/06/2023</span><a href="#" data-toggle="modal" data-target="#news1">
+                                      <br> Major Flooding in the Midwest Displaces Thousands of People.
+                                  </a>
+                              </div><br>
+                          </li>
+                          <li>
+                              <div class="col-md-4">
+                                  <img src="images/wildfire.jpg" alt="loading..." class="newsi">
+                              </div>
+                              <div class="col-md-8">
+                                  <span>19/09/2022</span><a href="#" data-toggle="modal" data-target="#news1">
+                                      <br> Earthquake Strikes Central Asia, Over 500 Casualties Reported.
+                                  </a>
+                              </div><br>
+                          </li>
+                          <li>
+                              <div class="col-md-4">
+                                  <img src="images/wildfires.jpg" alt="loading..." class="newsi">
+                              </div>
+                              <div class="col-md-8">
+                                  <span>30/12/2023</span><a href="#" data-toggle="modal" data-target="#news1">
+                                      <br> Record-Breaking Wildfires in Amazon Rainforest.
+                                  </a>
+                              </div><br>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+      </section>
+      
+
+
+<!-- Maps -->
+
+    <style>
+        /* Background Styling */
+        body {
+            background: linear-gradient(to right, #dee7ea, #d2d4d4, #dbdcdd);
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        /* Header Styling */
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        /* Image Styling */
+        .service-links img {
+            width: 150px;
+            height: 200px;
+            margin: 10px;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s;
+            border-radius: 10px;
+        }
+
+        .service-links img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Form Styling */
+        select, input {
+            width: 250px;
+            padding: 10px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            background: white;
+            color: black;
+        }
+
+        select:focus, input:focus {
+            outline: none;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Buttons */
+        button, input[type="submit"] {
+            background: #ff4757;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background 0.3s ease-in-out;
+        }
+
+        button:hover, input[type="submit"]:hover {
+            background: #e84118;
+        }
+
+        /* Tables */
+        table {
+            margin: 20px auto;
+            border-spacing: 10px;
+            font-size: 1.2em;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 20px;
+            font-size: 1.2em;
+            animation: fadeInUp 2s ease-in-out;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+
+    <h1>Escort Team Services</h1>
+
+    <!-- Service Links -->
+    <div class="service-links">
+        <a href="https://www.emri.in/108-emergency/">
+            <img src="images/logo.jpg" alt="EOS Services">
+        </a>
+        <a href="https://www.emri.in/108-emergency/">
+            <img src="images/108.jpg.png" alt="Ambulance Services">
+        </a>
+        <a href="https://dgfscdhg.gov.in/about-fire-service">
+            <img src="images/101.jpg.png" alt="Fire Engine Services">
+        </a>
+        <a href="https://www.emri.in/dial-100-police-emergency-service/">
+            <img src="images/100.jpg.png" alt="Police Services">
+        </a>
+    </div>
+
+    <h1>Temporary Houses</h1>
+
+    <!-- Address Selection -->
+    <table>
+        <tr>
+            <td><strong>Select Address</strong></td>
+            <td>
+                <select>
+                    <option>Select the State</option>
+                    <option>Andhra Pradesh</option>
+                    <option>Telangana</option>
+                    <option>Karnataka</option>
+                    <option>Madhya Pradesh</option>
+                    <option>Delhi</option>
+                    <option>Maharashtra</option>
+                    <option>West Bengal</option>
+                    <option>Jammu and Kashmir</option>
+                    <option>Tamil Nadu</option>
+                    <option>Haryana</option>
+                    <option>Uttar Pradesh</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Select Help Type</strong></td>
+            <td>
+                <select name="help_type">
+                    <option>Select the Help</option>
+                    <option>FREE Accommodations</option>
+                    <option>Rescue Team</option>
+                    <option>First Aid</option>
+                    <option>Transport</option>
+                    <option>Police</option>
+                    <option>Weather Forecast</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Contact Number</strong></td>
+            <td><input type="text" id="contactNumber" placeholder="Enter Contact Number"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <form method="post" action="order.html">
+                    <input type="submit" value="OK">
+                </form>
+            </td>
+        </tr>
+    </table>
+
+    <h1>Emergency Open Services</h1>
+
+<table>
+    <tr>
+        <td><strong>Select Service</strong></td>
+        <td>
+            <select>
+                <option>Select Service</option>
+                <option>Medical Assistance</option>
+                <option>Shelter</option>
+                <option>Food</option>
+                <option>Water</option>
+                <option>Transport</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td><strong>Quantity</strong></td>
+        <td><input type="text" id="quantity" placeholder="Enter Quantity"></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            <form method="post" action="order.html">
+                <input type="submit" value="Request Service">
+            </form>
+        </td>
+    </tr>
+</table>
+
+    <div class="footer">
+        <p>24/7 FREE SERVICES BY ESCORT TEAM.COM</p>
+        <p>No Cost - 24/7 FREE SERVICES provided by the Govt.</p>
+    </div>
+
+
+
+
+
+     <!-- ABOUT -->
+     <section id="about" data-stellar-background-ratio="0.5">
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-md-6 col-sm-12">
+                         <div class="about-info">
+                              <div class="section-title wow fadeInUp" data-wow-delay="0.2s">
+                                   <h2>What we do.</h2>
+                              </div>
+
+                              <div class="wow fadeInUp" data-wow-delay="0.4s">
+                                   <h3 style="font-weight: 100;">We are living in unprecedented times and every person in this world has been impacted by natural disasters in some way or the other. We may not be able to change the past but we can act constructively towards the betterment of the current situation, '<span style="font-weight: 600;">Precaution is better than cure</span>'. To be above this uncertain dilemma of life and death situations, we have built this system to help manage disaster situations, spread awareness and save lives.</h3>
+                              </div>
+                         </div>
+                    </div>
+
+                    <div class="col-md-6 col-sm-12">
+                         <div class="wow fadeInUp about-image" data-wow-delay="0.6s">
+                              <img src="images/about-image.jpg" class="img-responsive" alt="">
+                         </div>
+                    </div>
+                    
+               </div>
+          </div>
+     </section>
+
+    
+         <style>
+             /* Background Styling */
+             /* Heading */
+             h1 {
+                 font-size: 3em;
+                 text-transform: uppercase;
+                 text-shadow: 0px 0px 15px rgba(255, 255, 255, 0.9);
+                 animation: glow 1.5s infinite alternate;
+             }
+     
+             @keyframes glow {
+                 from { text-shadow: 0px 0px 15px rgba(255, 255, 255, 0.8); }
+                 to { text-shadow: 0px 0px 25px rgba(255, 255, 255, 1); }
+             }
+     
+             /* Emergency Section */
+             .emergency {
+                 margin-top: 20px;
+                 padding: 20px;
+                 background: rgba(255, 0, 0, 0.8);
+                 border-radius: 10px;
+                 box-shadow: 0px 0px 20px rgba(255, 0, 0, 0.9);
+                 animation: pulse 1.5s infinite;
+             }
+     
+             .emergency p {
+                 font-weight: bold;
+                 font-size: 24px;
+                 color: white;
+             }
+     
+             .emergency p span {
+                 font-size: 36px;
+                 font-weight: bold;
+                 text-shadow: 0px 0px 15px rgba(255, 255, 255, 1);
+             }
+     
+             @keyframes pulse {
+                 0% { transform: scale(1); }
+                 50% { transform: scale(1.05); }
+                 100% { transform: scale(1); }
+             }
+     
+             /* Emergency Number Images */
+             .toll-free {
+                 display: flex;
+                 justify-content: center;
+                 margin-top: 10px;
+             }
+     
+             .toll-free img {
+                 width: 120px;
+                 height: auto;
+                 margin: 10px;
+                 transition: transform 0.3s ease-in-out, box-shadow 0.3s;
+                 border-radius: 10px;
+             }
+     
+             .toll-free img:hover {
+                 transform: scale(1.1);
+                 box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.6);
+             }
+     
+             /* Fade In Animation */
+             @keyframes fadeIn {
+                 from { opacity: 0; transform: translateY(-10px); }
+                 to { opacity: 1; transform: translateY(0); }
+             }
+             
+         </style>
+    
+     <body>
+     
+         <h1>Disaster Management</h1>
+         <p>Welcome to our Disaster Management page. Here you can find information and resources related to disaster preparedness, response, and recovery.</p>
+     
+         <h2>Emergency Service Number</h2>
+         <div class="emergency">
+             <p>In case of emergency, call <span>1874</span></p>
+             <div class="toll-free">
+                 <img src="images/tollfree.jpg.png" alt="Toll Free Emergency">
+             </div>
+         </div>
+     
+         <h2>Resources</h2>
+         <ul>
+             <li><a href="#">Emergency Preparedness Checklist</a></li>
+             <li><a href="#">Disaster Recovery Guide</a></li>
+             <li><a href="#">Emergency Contact List Template</a></li>
+         </ul>
+     
+     </body>
+     
+     
+ 
+     
+     <!-- MENU-->
+     <section id="menu" data-stellar-background-ratio="0.5">
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-md-12 col-sm-12">
+                         <div class="section-title wow fadeInUp" data-wow-delay="0.1s">
+                              <h2 id="prec">Precautionary Steps</h2>
+                         </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6">
+                         <!-- MENU THUMB -->
+                         <div class="menu-thumb">
+                              <a href="wildfires.html" target="_blank" title="Wildfire">
+                                   <img src="images/wildfires.jpg"  class="img-responsive" alt="">
+
+                                   <div class="menu-info">
+                                        <div class="menu-item">
+                                             <h3>Wildfire</h3>
+                                             <p > <a href="wildfires.html" target="_blank" style="color: aliceblue;">Click for Precautions. </a></p>
+
+                                        </div>
+                                        
+                                   </div>
+                              </a>
+                         </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6">
+                         <!-- MENU THUMB -->
+                         <div class="menu-thumb">
+                              <a href="floods.html"  target="_blank"  title="Flood">
+                                   <img src="images/flooood.jpg" class="img-responsive" alt="">
+
+                                   <div class="menu-info">
+                                        <div class="menu-item">
+                                              <h3>Flood</h3>
+                                              <p > <a href="floods.html" target="_blank" style="color: aliceblue;">Click for Precautions. </a></p>
+                                             </div>
+                                       
+                                   </div>
+                              </a>
+                         </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6">
+                         <!-- MENU THUMB -->
+                         <div class="menu-thumb">
+                              <a href="violence.html"  target="_blank"  title="Violence">
+                                   <img src="images/riots.jpg" class="img-responsive" alt="">
+
+                                   <div class="menu-info">
+                                        <div class="menu-item">
+                                           <h3>Violence</h3>
+                                           <p > <a href="violence.html" target="_blank" style="color: aliceblue;">Click for Precautions. </a></p>
+
+
+                                        </div>
+                                       
+                                   </div>
+                              </a>
+                         </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6">
+                         <!-- MENU THUMB -->
+                         <div class="menu-thumb">
+                              <a href="earthquake.html"  target="_blank" title="Earthquake">
+                                   <img src="images/earthquakeee.jpg" class="img-responsive" alt="">
+
+                                   <div class="menu-info">
+                                        <div class="menu-item">
+                                             <h3>Earthquake</h3>
+                                             <p > <a href="earthquake.html" target="_blank" style="color: aliceblue;">Click for Precautions. </a></p>
+
+                                        </div>
+                                       
+                                   </div>
+                              </a>
+                         </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6">
+                         <!-- MENU THUMB -->
+                         <div class="menu-thumb">
+                              <a href="storms.html" target="_blank" title="Tornado">
+                                   <img src="images/tornado.jpg" class="img-responsive" alt="">
+
+                                  <div class="menu-info">
+                                        <div class="menu-item">
+                                            <h3>Tornado</h3>
+                                            <p > <a href="storms.html" target="_blank" style="color: aliceblue;">Click for Precautions. </a></p>
+
+                                        </div>
+                                       
+                                   </div>
+                              </a>
+                         </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6">
+                         <!-- MENU THUMB -->
+                         <div class="menu-thumb">
+                              <a href="pandemic.html" target="_blank"  title="Pandemic">
+                                   <img src="images/pandemic.jpg" class="img-responsive" alt="">
+
+                                   <div class="menu-info">
+                                        <div class="menu-item">
+                                           <h3>Pandemic</h3>
+                                           <p > <a href="pandemic.html" target="_blank" style="color: aliceblue;">Click for Precautions. </a></p>
+
+                                        </div>
+                                       
+                                   </div>
+                              </a>
+                         </div>
+                    </div>
+
+
+               </div>
+          </div>
+     </section>
+
+
+     <!-- TESTIMONIAL -->
+    
+
+
+    
+
+     <!-- FOOTER -->
+     <footer id="footer">
+          <div class="footer-wave"></div>
+          <div class="container">
+              <div class="row">
+                  <!-- Find Us Section -->
+                  <div class="col-md-3 col-sm-6">
+                      <div class="footer-info">
+                          <h2 class="footer-title">Find Us</h2>
+                          <address>
+                              <p>Escort Tech Hub<br>Palakollanu Village,<br>Orvakal Mandal, Kurnool Dist 518010</p>
+                          </address>
+                      </div>
+                  </div>
+      
+                  <!-- Contact Section -->
+                  <div class="col-md-3 col-sm-6">
+                      <div class="footer-info">
+                          <h2 class="footer-title">Contact</h2>
+                          <p><strong>Phone:</strong> +91 7993417685</p>
+                          <p><strong>Email:</strong> <a href="mailto:22x51a3840@srecnandyal.edu.in">22x51a3840@srecnandyal.edu.in</a></p>
+                      </div>
+                  </div>
+      
+                  <!-- Office Hours Section -->
+                  <div class="col-md-4 col-sm-6">
+                      <div class="footer-info">
+                          <h2 class="footer-title">Office Hours</h2>
+                          <p>Emergency Support: <strong>24/7</strong></p>
+                          <p>General Queries: <strong>10:00 AM - 6:00 PM</strong></p>
+                      </div>
+                  </div>
+      
+                  <!-- Social Media Icons -->
+                  <div class="col-md-2 col-sm-6">
+                      <h2 class="footer-title">Follow Us</h2>
+                      <ul class="social-icons">
+                          <li><a href="#" class="fa fa-facebook"></a></li>
+                          <li><a href="#" class="fa fa-twitter"></a></li>
+                          <li><a href="#" class="fa fa-instagram"></a></li>
+                          <li><a href="#" class="fa fa-linkedin"></a></li>
+                      </ul>
+                  </div>
+              </div>
+      
+              <!-- Copyright -->
+              <div class="footer-bottom">
+                  <p>© 2024 Escort Tech Hub | Disaster Management Initiative</p>
+              </div>
+          </div>
+      </footer>
+      
+      <!-- Advanced Footer CSS -->
+      <style>
+          /* Footer Base */
+          #footer {
+              position: relative;
+              background: linear-gradient(to right, #001f3f, #005a8d);
+              color: white;
+              padding: 50px 0;
+              font-family: 'Arial', sans-serif;
+              overflow: hidden;
+          }
+      
+          /* Footer Title */
+          .footer-title {
+              font-size: 1.8em;
+              margin-bottom: 15px;
+              font-weight: bold;
+              text-transform: uppercase;
+              color: #00aaff;
+              text-shadow: 0px 0px 10px rgba(0, 255, 255, 0.8);
+              animation: glow 1.5s infinite alternate;
+          }
+      
+          @keyframes glow {
+              from { text-shadow: 0px 0px 10px rgba(0, 255, 255, 0.8); }
+              to { text-shadow: 0px 0px 20px rgba(0, 255, 255, 1); }
+          }
+      
+          /* Footer Content */
+          .footer-info {
+              margin-bottom: 20px;
+          }
+      
+          .footer-info p {
+              font-size: 1.1em;
+              line-height: 1.6;
+          }
+      
+          /* Social Icons */
+          .social-icons {
+              display: flex;
+              gap: 10px;
+              padding: 0;
+              list-style: none;
+              justify-content: center;
+          }
+      
+          .social-icons li {
+              display: inline-block;
+          }
+      
+          .social-icons a {
+              color: white;
+              font-size: 1.5em;
+              transition: 0.3s;
+              padding: 10px;
+              border-radius: 50%;
+              background: rgba(255, 255, 255, 0.1);
+          }
+      
+          .social-icons a:hover {
+              transform: scale(1.2);
+              box-shadow: 0px 0px 15px #00ffff;
+          }
+      
+          /* Footer Bottom */
+          .footer-bottom {
+              text-align: center;
+              padding: 20px 0;
+              font-size: 1em;
+              border-top: 1px solid rgba(255, 255, 255, 0.3);
+          }
+      
+          /* Footer Wave Animation */
+          .footer-wave {
+              position: absolute;
+              top: -50px;
+              left: 0;
+              width: 100%;
+              height: 50px;
+              background: url('https://i.imgur.com/3Z7bgWu.png') repeat-x;
+              animation: wave 5s infinite linear;
+          }
+      
+          @keyframes wave {
+              from { background-position-x: 0; }
+              to { background-position-x: 1000px; }
+          }
+      </style>
+      
+
+
+     
+       
+        
+
+
+     <!-- SCRIPTS -->
+     <script src="js/jquery.js"></script>
+     <script src="js/bootstrap.min.js"></script>
+     <script src="js/jquery.stellar.min.js"></script>
+     <script src="js/wow.min.js"></script>
+     <script src="js/owl.carousel.min.js"></script>
+     <script src="js/jquery.magnific-popup.min.js"></script>
+     <script src="js/smoothscroll.js"></script>
+     <script src="js/custom.js"></script>
+     
+     
+     
+     
+<!--     notify script starts-->
+
+<!--     notify script ends-->
+
+</body>
+</html>
